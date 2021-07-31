@@ -15,7 +15,7 @@ class MemoryMemberRepositoryTest {
     //Clear DB after each test
     @AfterEach
     public void afterEach(){
-
+        repository.clearSotre();
     }
 
     @Test
