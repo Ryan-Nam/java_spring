@@ -4,6 +4,7 @@ import hello.hellospring.domain.Member;
 import hello.hellospring.repository.MemberRepository;
 import hello.hellospring.repository.MemoryMemberRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 public class MemberService {
@@ -18,18 +19,26 @@ public class MemberService {
 //            throw new IllegalStateException("Already registered");
 //        });
 
-        extracted(member);
-
-
+        validateDuplicateMember(member);
         memberRepository.save(member);
         return member.getId(); //firstly, only return ID
 
         
     }
 
-    private void extracted(Member member) {
+    private void validateDuplicateMember(Member member) {
         memberRepository.findByName(member.getName()).ifPresent(m -> {
             throw new IllegalStateException("Already registered");
         });
     }
+
+    // All Member finding
+    public List<Member> findMembers(){
+        return memberRepository.findAll();
+    }
+
+    public Optional <Member> findOne (Long memberId){
+        return memberRepository.findById(memberId);
+    }
+
 }
