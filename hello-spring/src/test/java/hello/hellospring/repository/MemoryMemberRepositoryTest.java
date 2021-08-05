@@ -26,6 +26,12 @@ class MemoryMemberRepositoryTest {
         repository.save(member);
 
         Member result = repository.findById(member.getId()).get();
+
+        // Validation
+        // method 1= System.out.println("result =" + (result == member));  // but this will display ture/false -> we can't accept in testing..
+        // method 2, Use Assertion
+        // Assertions.asserEquals(member, result);
+        // method 3, commonly used   => Assertions.asserthat
         assertThat(member).isEqualTo(result);
     }
 
