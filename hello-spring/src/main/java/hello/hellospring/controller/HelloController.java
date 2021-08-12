@@ -27,9 +27,10 @@ public class HelloController {
         return "hello " + name;
     }
 
-
+    //Data...
     @GetMapping("hello-api")
     @ResponseBody
+    // make object first
     public Hello helloApi(@RequestParam("name") String name) {   //publich Hello = object
         Hello hello = new Hello();
         hello.setName(name);
