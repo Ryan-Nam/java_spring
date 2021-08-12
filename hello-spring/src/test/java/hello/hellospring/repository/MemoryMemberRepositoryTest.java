@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.*;
 class MemoryMemberRepositoryTest {
     MemoryMemberRepository repository = new MemoryMemberRepository();
 
-    //Clear DB after each test
+    //Clear DB after each test,
     @AfterEach
     public void afterEach(){
         repository.clearSotre();

@@ -26,7 +26,8 @@ class MemberServiceTest {
         Member findMember =memberService.findOne(saveId).get();
         Assertions.assertThat(member.getName()).isEqualTo(findMember.getName());
     }
-
+    // Test "Join" also important (50% of 100%), the other 50% test is below
+    // But Dealing with the Exception is more important. need to actually see our exception (duplication)
     @Test
     void exceptionDuplicatedMember() {
 
@@ -43,12 +44,15 @@ class MemberServiceTest {
 
         Assertions.assertThat(e.getMessage()).isEqualTo("Already registered");
 
+        // This method also good..
         /*try {
             memberService.join(member2);
             fail();
         }catch (IllegalStateException e){
             Assertions.assertThat(e.getMessage()).isEqualTo("Already registered");
         }*/
+
+        // Rather than this, we use different way, using assertThrows... above.
 
 
 
