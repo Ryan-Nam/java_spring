@@ -9,7 +9,12 @@ import java.util.Optional;
 
 public class MemberService {
     //to make member' service, we need their repository first
-    private final MemberRepository memberRepository = new MemoryMemberRepository();
+    //private final MemberRepository memberRepository = new MemoryMemberRepository();
+    private final MemberRepository memberRepository;
+
+    public MemberService(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
+    }
 
     // Member Registeration
     // Requirmenet, no duplication name
