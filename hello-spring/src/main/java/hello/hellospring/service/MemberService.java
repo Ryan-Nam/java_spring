@@ -31,8 +31,6 @@ public class MemberService {
         validateDuplicateMember(member);
         memberRepository.save(member);
         return member.getId(); //firstly, only return ID
-
-        
     }
 
     private void validateDuplicateMember(Member member) {
@@ -49,5 +47,4 @@ public class MemberService {
     public Optional <Member> findOne (Long memberId){
         return memberRepository.findById(memberId);
     }
-
 }

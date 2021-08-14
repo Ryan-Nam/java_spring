@@ -1,8 +1,6 @@
 package hello.hellospring.repository;
-
 import hello.hellospring.domain.Member;
 import org.springframework.jdbc.datasource.DataSourceUtils;
-
 import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
@@ -19,7 +17,7 @@ public class JdbcMemberRepository implements MemberRepository{
 
     @Override
     public Member save(Member member) {
-        String sql = "insert into member(name) values(?)";
+        String sql = "insert into member (name) values (?)";
 
         Connection conn = null; //after DB, Release straight away, otherwisse,,,, Explore!!!!!!
         PreparedStatement pstmt = null;
@@ -82,14 +80,19 @@ public class JdbcMemberRepository implements MemberRepository{
     @Override
     public List<Member> findAll() {
         String sql = "select * from member";
+
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
+
         try {
             conn = getConnection();
             pstmt = conn.prepareStatement(sql);
+
             rs = pstmt.executeQuery();
+
             List<Member> members = new ArrayList<>();
+
             while(rs.next()) {
                 Member member = new Member();
                 member.setId(rs.getLong("id"));
@@ -132,6 +135,7 @@ public class JdbcMemberRepository implements MemberRepository{
 
         return DataSourceUtils.getConnection(dataSource);
     }
+
     private void close(Connection conn, PreparedStatement pstmt, ResultSet rs)
     {
         try {
@@ -153,7 +157,8 @@ public class JdbcMemberRepository implements MemberRepository{
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        } }
+        }
+    }
     private void close(Connection conn) throws SQLException {
         DataSourceUtils.releaseConnection(conn, dataSource);
     }
